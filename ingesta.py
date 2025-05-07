@@ -1,20 +1,18 @@
-import os
 import csv
 import boto3
 import mysql.connector
 
 # Configuración MySQL desde variables de entorno
-db_host     = os.getenv('MYSQL_HOST')
-db_port     = int(os.getenv('MYSQL_PORT', '3306'))
-db_user     = os.getenv('MYSQL_USER')
-db_password = os.getenv('MYSQL_PASSWORD')
-db_name     = os.getenv('MYSQL_DATABASE')
-table_name  = os.getenv('MYSQL_TABLE', 'your_table')
+db_host     = "172.31.28.92"
+db_port     = "8005"
+db_user     = "root"
+db_password = "utec"
+db_name     = "bd_api_employees"
 
 # Nombre del CSV de salida
-fichero_upload = 'dataMYSQL.csv'
+fichero_upload = "dataMYSQL.csv"
 # Bucket S3 (por defecto o desde variable de entorno)
-nombre_bucket  = os.getenv('S3_BUCKET', 'arb-aoutput-01')
+nombre_bucket  = "arb-aoutput-01"
 
 # Función para extraer datos de MySQL
 def fetch_data():
@@ -26,7 +24,7 @@ def fetch_data():
         database=db_name
     )
     cursor = conn.cursor()
-    cursor.execute(f"SELECT * FROM {table_name}")
+    cursor.execute("SELECT * FROM employees")
     rows = cursor.fetchall()
     columns = [col[0] for col in cursor.description]
     cursor.close()
@@ -45,7 +43,7 @@ def save_to_csv(columns, rows, filename):
 def upload_to_s3(file_path):
     s3 = boto3.client('s3')
     s3.upload_file(file_path, nombre_bucket, file_path)
-    print(f"Ingesta completada: {file_path} subido a s3://{nombre_bucket}/{file_path}")
+    print("Ingesta completada")
 
 if __name__ == '__main__':
     cols, data = fetch_data()
