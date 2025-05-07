@@ -1,5 +1,5 @@
 FROM python:3-slim
 WORKDIR /programas/ingesta
-RUN pip3 install boto3 mysql-connector-python
+RUN pip3 install mysql-connector-python boto3
 COPY . .
 CMD [ "python3", "./ingesta.py" ]
