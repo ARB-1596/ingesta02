@@ -12,7 +12,7 @@ db_name     = "bd_api_employees"
 # Nombre del CSV de salida
 fichero_upload = "dataMYSQL.csv"
 # Bucket S3 (por defecto o desde variable de entorno)
-nombre_bucket  = "arb-aoutput-01"
+nombre_bucket  = "arb-output-01"
 
 # Función para extraer datos de MySQL
 def fetch_data():
