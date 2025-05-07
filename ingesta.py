@@ -48,6 +48,6 @@ def upload_to_s3(file_path):
 if __name__ == '__main__':
     cols, data = fetch_data()
     print(cols, data)
-    print(endl)
     csv_file   = save_to_csv(cols, data, fichero_upload)
+    print(csv_file)
     upload_to_s3(csv_file)
