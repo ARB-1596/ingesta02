@@ -14,7 +14,7 @@ table_name  = os.getenv('MYSQL_TABLE', 'your_table')
 # Nombre del CSV de salida
 fichero_upload = 'dataMYSQL.csv'
 # Bucket S3 (por defecto o desde variable de entorno)
-nombre_bucket  = os.getenv('S3_BUCKET', 'blc-aoutput-01')
+nombre_bucket  = os.getenv('S3_BUCKET', 'arb-aoutput-01')
 
 # Función para extraer datos de MySQL
 def fetch_data():
